@@ -1,8 +1,12 @@
 <?php
-$pdo = new PDO('mysql:dbname=db;host=mysql', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+try {
+    $pdo = new PDO('mysql:dbname=mysql;host=mysql', 'root', 'root', [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-$query = $pdo->query('SHOW VARIABLES like "version"');
+    $query = $pdo->query('SHOW VARIABLES like "version"');
 
-$row = $query->fetch();
+    $row = $query->fetch();
 
-echo 'MySQL version:' . $row['Value'];
+    echo 'Connected successfully';
+} catch (PDOException $e) {
+    echo "Connection failed: ".$e->getMessage();
+}
