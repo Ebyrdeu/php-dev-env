@@ -6,7 +6,7 @@ try {
 
     $row = $query->fetch();
 
-    echo 'Connected successfully';
+    echo 'Connected successfully'. $row;
 } catch (PDOException $e) {
     echo "Connection failed: ".$e->getMessage();
 }
